@@ -28,93 +28,57 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Custom CSS for a professional, premium UI
-st.markdown("""
-<style>
-    /* Global Typography & Colors */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    html, body, [class*="css"]  {
-        font-family: 'Inter', sans-serif;
-    }
-    
-    /* Main Background & Text */
-    .stApp {
-        background-color: #0e1117;
-        color: #f0f2f6;
-    }
-    
-    /* Headers */
-    h1, h2, h3 {
-        color: #e0e6ed !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.02em;
-    }
-    
-    /* Title Styling */
-    .main-title {
-        font-size: 2.8rem;
-        background: -webkit-linear-gradient(45deg, #4f46e5, #0ea5e9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700;
-        margin-bottom: 0px;
-    }
-
-    .subtitle {
-        color: #94a3b8;
-        font-size: 1.1rem;
-        margin-top: 5px;
-        margin-bottom: 30px;
-    }
-
-    /* Input Field Styling */
-    .stTextArea textarea {
-        background-color: #1e2530 !important;
-        color: #f8fafc !important;
-        border: 1px solid #334155 !important;
-        border-radius: 8px !important;
-        padding: 12px !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease;
-    }
-    
-    .stTextArea textarea:focus {
-        border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
-    }
-
-    /* Button Styling */
-    .stButton>button {
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 1.5rem !important;
-        font-size: 1.1rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-    }
-    
-    .stButton>button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-    }
-
-    /* Separator */
-    hr {
-        border-color: #334155 !important;
-        margin: 2rem 0 !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # ---------------------------------------------------------
-# Main Interface
+# Theme & Layout Configuration
 # ---------------------------------------------------------
-st.markdown("<div class='main-title'>Healthcare Planning Assistant <span style='font-size:0.5em'>Agent</span></div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Autonomous task orchestration & resource validation via Agentic multi-step reasoning.</div>", unsafe_allow_html=True)
+
+# Use columns to place the theme toggle on the right
+col_title, col_theme = st.columns([10, 2])
+
+with col_title:
+    st.markdown("<div class='main-title'>Healthcare Planning Assistant <span style='font-size:0.5em'>Agent</span></div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Autonomous task orchestration & resource validation via Agentic multi-step reasoning.</div>", unsafe_allow_html=True)
+
+with col_theme:
+    st.markdown("<br>", unsafe_allow_html=True)
+    theme = st.selectbox("UI Theme", ["Dark", "Light"], label_visibility="collapsed")
+
+if theme == "Dark":
+    theme_css = """
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html, body, [class*="css"]  { font-family: 'Inter', sans-serif; }
+        .stApp { background-color: #0e1117; color: #f0f2f6; }
+        h1, h2, h3 { color: #e0e6ed !important; font-weight: 600 !important; letter-spacing: -0.02em; }
+        .main-title { font-size: 2.8rem; background: -webkit-linear-gradient(45deg, #4f46e5, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; margin-bottom: 0px; }
+        .subtitle { color: #94a3b8; font-size: 1.1rem; margin-top: 5px; margin-bottom: 30px; }
+        .stTextArea textarea { background-color: #1e2530 !important; color: #f8fafc !important; border: 1px solid #334155 !important; border-radius: 8px !important; padding: 12px !important; font-size: 1rem !important; transition: all 0.3s ease; }
+        .stTextArea textarea:focus { border-color: #3b82f6 !important; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important; }
+        .stButton>button { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important; color: white !important; border: none !important; border-radius: 8px !important; padding: 0.75rem 1.5rem !important; font-size: 1.1rem !important; font-weight: 600 !important; transition: all 0.3s ease !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important; }
+        .stButton>button:hover { transform: translateY(-2px) !important; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
+        hr { border-color: #334155 !important; margin: 2rem 0 !important; }
+        .result-container { background-color: #1e293b; padding: 30px; border-radius: 12px; border: 1px solid #334155; margin-top: 15px; }
+    </style>
+    """
+else:
+    theme_css = """
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html, body, [class*="css"]  { font-family: 'Inter', sans-serif; }
+        .stApp { background-color: #f8fafc; color: #0f172a; }
+        h1, h2, h3 { color: #1e293b !important; font-weight: 600 !important; letter-spacing: -0.02em; }
+        .main-title { font-size: 2.8rem; background: -webkit-linear-gradient(45deg, #3b82f6, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; margin-bottom: 0px; }
+        .subtitle { color: #475569; font-size: 1.1rem; margin-top: 5px; margin-bottom: 30px; }
+        .stTextArea textarea { background-color: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; border-radius: 8px !important; padding: 12px !important; font-size: 1rem !important; transition: all 0.3s ease; }
+        .stTextArea textarea:focus { border-color: #3b82f6 !important; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important; }
+        .stButton>button { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important; color: white !important; border: none !important; border-radius: 8px !important; padding: 0.75rem 1.5rem !important; font-size: 1.1rem !important; font-weight: 600 !important; transition: all 0.3s ease !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important; }
+        .stButton>button:hover { transform: translateY(-2px) !important; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
+        hr { border-color: #e2e8f0 !important; margin: 2rem 0 !important; }
+        .result-container { background-color: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid #cbd5e1; margin-top: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+    </style>
+    """
+
+st.markdown(theme_css, unsafe_allow_html=True)
 st.markdown("---")
 
 # Agent Input Section
@@ -176,7 +140,7 @@ if run_agent:
                 
                 # Wrap the result in a nice styled container
                 st.markdown(f"""
-                <div style='background-color: #1e293b; padding: 30px; border-radius: 12px; border: 1px solid #334155; margin-top: 15px;'>
+                <div class='result-container'>
                     {plan_result_markdown}
                 </div>
                 """, unsafe_allow_html=True)
