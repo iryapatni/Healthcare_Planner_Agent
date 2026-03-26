@@ -6,7 +6,7 @@ This repository contains the source code for the "Healthcare Planning Assistant 
 Upon receiving a high-level goal (e.g., 'Treatment Options'), the single **Planner Agent** autonomously decomposes the objective into sequential, actionable steps. It utilizes a custom mock tool (`CheckResourceAvailabilityTool`) to validate the availability of standard hospital resources (e.g., doctors, rooms, equipment). Finally, it dynamically coordinates these variables to generate a detailed compilation of dependencies and an optimized execution schedule in a robust user interface.
 
 ### 👥 Team Project Information
-- **Division**: D3
+- **Division**: D4
 - **Group**: Placed BtechGroup07
 - **Project No**: AAI-02
 - **Subject**: Agentic AI
@@ -57,7 +57,7 @@ This project is built to be 100% implementable in one go. You will provide your 
 
 ---
 
-## 📐 High Level Design (HLD)
+## 📐 High Level Design Overview (HLD)
 
 1. **User Interface (Streamlit) (app.py)**
    - Operates as the user-facing interface component with a premium frontend.
@@ -73,7 +73,7 @@ This project is built to be 100% implementable in one go. You will provide your 
 4. **Resource Assessment Interface Tool**
    - Integrates natively via CrewAI's `tools=[...]` array. It allows the LLM to contextually query real-time mock data surrounding external systems.
 
-## 📄 Low Level Design (LLD)
+## 📄 Low Level Design Overview (LLD)
 
 1. **Agent Definition (Planner)**
    - **Role**: `Medical Planning Coordinator`
